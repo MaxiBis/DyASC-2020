@@ -1,10 +1,12 @@
 #include <string.h>
 #include <wifi_adapter.h>
 #include <CI_controller.h>
+#include <web.h>
 
 const int requestInterval = 7000;  // 7s
 
 String httpAnswer;
+//web myweb;
 
 // Url's para hacer las peticiones
 const char* URL = "https://api.travis-ci.org/MaxiBis/test_build_status.svg?branch=master";
@@ -25,6 +27,7 @@ void loop(){
     mycontroller.showAnswer(httpAnswer);
 
     delay(requestInterval);   //delay entre requests
+    //myweb.atenderCliente();
   }
 } // EOF Loop
 
