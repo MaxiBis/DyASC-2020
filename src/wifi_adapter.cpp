@@ -1,17 +1,18 @@
 #include "wifi_adapter.h"
 #include <WiFi.h>
 #include "Arduino.h"
+const char* ssid;
+const char* password;
 
 wifi_adapter::wifi_adapter(int pin){
     pinMode(pin, OUTPUT);
     wifi_status_pin = pin;
+    ssid = "Maxi-Tele";         //default credentials
+    password =  "vwgol123";     //default credentials
 }
 
 
 void wifi_adapter::conectarme(){
-    const char* ssid = "Maxi-Tele";
-    const char* password =  "vwgol123";
-    
     WiFi.begin(ssid, password);
     Serial.println("connecting");
     bool estado_led = true;
@@ -36,4 +37,9 @@ void wifi_adapter::conectarme(){
 
 bool wifi_adapter::isConnected(){
     return WL_CONNECTED;
+}
+
+void wifi_adapter::setWifiCredentials(const char* new_SSID,const char* new_password){
+    ssid = new_SSID;         
+    password = new_password; 
 }
