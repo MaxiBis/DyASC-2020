@@ -9,7 +9,7 @@ class wifi_adapter
     wifi_adapter(int pin);
     void conectarme();
     bool isConnected();
-    void setWifiCredentials(const char* SSID,const char* password);
+    void setWifiCredentials(const char* new_SSID,const char* new_password);
     
   private:
     int wifi_status_pin;  
