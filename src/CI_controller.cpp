@@ -2,11 +2,15 @@
 #include <HTTPClient.h>
 #include "Arduino.h"
 #include <string.h>
+#include <Test_led.h>
+#include "leds.h"
 
 // ledPin refers to ESP32 GPIOs
 const int GreenLed = 23;
 const int YellowLed = 22;
 const int RedLed = 21;
+//bool test = true;
+leds misLeds;
 
 CI_controller::CI_controller(){
     // initialize digital pin ledPin as an output and set them as low
@@ -16,7 +20,11 @@ CI_controller::CI_controller(){
     digitalWrite(GreenLed, LOW);
     digitalWrite(YellowLed, LOW);
     digitalWrite(RedLed, LOW);
+    
+    //if(test){
 
+      //test = false;
+    //}
 }
 
 String CI_controller::getHHTPRequest(const char* serverName) {
@@ -47,21 +55,24 @@ void CI_controller::showAnswer(String answ){
     String answer = answ;
     if (answer.indexOf("failing") > 0) {
         Serial.println("FAILING\n");
-        digitalWrite(GreenLed, LOW);
+        /*digitalWrite(GreenLed, LOW);
         digitalWrite(YellowLed, LOW);
-        digitalWrite(RedLed, HIGH);
+        digitalWrite(RedLed, HIGH);*/
+        misLeds.solo_rojo();
       } 
-    if (answer.indexOf("canceled") > 0) {
+    if ((answer.indexOf("canceled") > 0) || (answer.indexOf("error") > 0)) {
         Serial.println("CANCELED\n");
-        digitalWrite(GreenLed, LOW);
+        /*digitalWrite(GreenLed, LOW);
         digitalWrite(YellowLed, HIGH);
-        digitalWrite(RedLed, LOW);
+        digitalWrite(RedLed, LOW);*/
+        misLeds.solo_amarillo();
     } 
     if (answer.indexOf("passing") > 0) {
         Serial.println("PASSING\n");
-        digitalWrite(GreenLed, HIGH);
+        /*digitalWrite(GreenLed, HIGH);
         digitalWrite(YellowLed, LOW);
-        digitalWrite(RedLed, LOW);
+        digitalWrite(RedLed, LOW);*/
+        misLeds.solo_verde();
     } 
     return;
 };
