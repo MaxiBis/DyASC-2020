@@ -3,6 +3,9 @@
 
 #include "Arduino.h"
 #include <string.h>
+#include <esp32-hal-bt.h>
+#include "Encender_Led.h"
+
 
 class CI_controller
 {
@@ -11,10 +14,15 @@ class CI_controller
 
     String getHHTPRequest(const char* serverName);
     void showAnswer(String answ);
-    
+    void procesar_salida(int led);
+    int estado_anterior();
+
   private:
     //int wifi_status_pin;  
-   
+    const int GreenLed = 04;
+    const int YellowLed = 22;
+    const int RedLed = 21;
+          int led_anterior;
 };
 
-#endif /* wifi_adapter_h */
+#endif /* CI_controller_h */

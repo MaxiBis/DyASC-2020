@@ -2,30 +2,15 @@
 #include <HTTPClient.h>
 #include "Arduino.h"
 #include <string.h>
-#include <Test_led.h>
-#include "leds.h"
+#include "Encender_Led.h"
 
-// ledPin refers to ESP32 GPIOs
-const int GreenLed = 23;
-const int YellowLed = 22;
-const int RedLed = 21;
-//bool test = true;
-leds misLeds;
+
+int led_anterior;
 
 CI_controller::CI_controller(){
-    // initialize digital pin ledPin as an output and set them as low
-    pinMode(GreenLed, OUTPUT);
-    pinMode(YellowLed, OUTPUT);
-    pinMode(RedLed, OUTPUT);
-    digitalWrite(GreenLed, LOW);
-    digitalWrite(YellowLed, LOW);
-    digitalWrite(RedLed, LOW);
-    
-    //if(test){
-
-      //test = false;
-    //}
-}
+   // estado_anterior();
+   
+};
 
 String CI_controller::getHHTPRequest(const char* serverName) {
   HTTPClient http;    
@@ -51,28 +36,58 @@ String CI_controller::getHHTPRequest(const char* serverName) {
   return payload;
 };
 
+
+
 void CI_controller::showAnswer(String answ){
     String answer = answ;
+    
     if (answer.indexOf("failing") > 0) {
         Serial.println("FAILING\n");
-        /*digitalWrite(GreenLed, LOW);
-        digitalWrite(YellowLed, LOW);
-        digitalWrite(RedLed, HIGH);*/
-        misLeds.solo_rojo();
-      } 
-    if ((answer.indexOf("canceled") > 0) || (answer.indexOf("error") > 0)) {
+      procesar_salida(RedLed);
+       
+        
+      } else
+    if (answer.indexOf("canceled") > 0) {
         Serial.println("CANCELED\n");
-        /*digitalWrite(GreenLed, LOW);
-        digitalWrite(YellowLed, HIGH);
-        digitalWrite(RedLed, LOW);*/
-        misLeds.solo_amarillo();
-    } 
+      
+        procesar_salida(YellowLed);
+
+    } else
     if (answer.indexOf("passing") > 0) {
         Serial.println("PASSING\n");
-        /*digitalWrite(GreenLed, HIGH);
-        digitalWrite(YellowLed, LOW);
-        digitalWrite(RedLed, LOW);*/
-        misLeds.solo_verde();
+        procesar_salida(GreenLed);
     } 
     return;
+};
+
+
+
+int CI_controller::estado_anterior(){
+  if(digitalRead(22)==HIGH){
+
+    led_anterior = 22;
+    return 22;
+  }else if(digitalRead(04)==HIGH){
+    
+    led_anterior = 04;
+    return 04;
+  }else if(digitalRead(21)){
+    led_anterior = 21;
+    return 21;
+  }
+  
+   return led_anterior;
+};
+
+
+
+void CI_controller::procesar_salida(int led){
+   
+ 
+  Encender_Led el;
+  if(led != estado_anterior()){
+    el.parpadea_led(led);
+  }
+ el.led_correcto(led);
+ 
 };

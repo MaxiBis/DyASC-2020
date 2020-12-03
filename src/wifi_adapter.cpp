@@ -7,8 +7,8 @@ const char* password;
 wifi_adapter::wifi_adapter(int pin){
     pinMode(pin, OUTPUT);
     wifi_status_pin = pin;
-    ssid = "Maxi-Tele";         //default credentials
-    password =  "vwgol123";     //default credentials
+    ssid = "WiFi-Arnet-nf4d";         //default credentials
+    password =  "UFYMAUAWKF";     //default credentials
 }
 
 
