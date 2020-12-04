@@ -1,10 +1,13 @@
+#ifndef UNIT_TEST
+#ifdef ARDUINO
+
 #include <string.h>
 #include <wifi_adapter.h>
 #include <CI_controller.h>
 #include "Test_Led.h"
 
 
-const int requestInterval = 4000;  // 7s
+const int requestInterval = 7000;  // 7s
 
 String httpAnswer;
 //web myweb;
@@ -16,9 +19,7 @@ String httpAnswer;
 //const char* URL = "https://api.travis-ci.org/MaxiBis/dyasc_build.svg?branch=master";
 //const char* URL = "https://api.travis-ci.org/MaxiBis/test_build_status.svg?branch=master";
 const char* URL = "https://api.travis-ci.org/MaxiBis/aydoo-2018.svg?branch=master";
-wifi_adapter miwifi(2);
-
-
+wifi_adapter miwifi;
 
 void setup(){
     Serial.begin(115200);
@@ -43,5 +44,9 @@ void loop(){
   }
 } // EOF Loop
 
-
+#else
+int main(int argc, char **argv) {
+}
+#endif
+#endif
 

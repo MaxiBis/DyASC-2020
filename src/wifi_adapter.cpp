@@ -1,14 +1,15 @@
 #include "wifi_adapter.h"
 #include <WiFi.h>
-#include "Arduino.h"
+//#include "Arduino.h"
 const char* ssid;
 const char* password;
+const int output_pin = 2;
 
-wifi_adapter::wifi_adapter(int pin){
-    pinMode(pin, OUTPUT);
-    wifi_status_pin = pin;
-    ssid = "WiFi-Arnet-nf4d";         //default credentials
-    password =  "UFYMAUAWKF";     //default credentials
+wifi_adapter::wifi_adapter(){
+    pinMode(output_pin, OUTPUT);
+    wifi_status_pin = output_pin;
+    ssid = "Maxi-Tele";         //default credentials
+    password =  "vwgol123";     //default credentials
 }
 
 
@@ -42,4 +43,8 @@ bool wifi_adapter::isConnected(){
 void wifi_adapter::setWifiCredentials(const char* new_SSID,const char* new_password){
     ssid = new_SSID;         
     password = new_password; 
+}
+
+std::string wifi_adapter::getSSID(){
+    return ssid;
 }

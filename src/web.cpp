@@ -1,4 +1,4 @@
-//#include <Web.h>
+#include <Web.h>
 #include <WebServer.h>
 #include <string.h>
 
@@ -80,7 +80,7 @@ void handlePostForm()
   Serial.println(notice);
   Serial.println(passwordNueva);
 }
-/*
+
 web::web(){
   server.on("/",handle_OnConnect);
   server.on("/postForm", handlePostForm);
@@ -88,10 +88,10 @@ web::web(){
 
   server.begin();
   Serial.println("HTTP server started");
-}*/
+}
 
-/*void web::atenderCliente() {
+void web::atenderCliente() {
   server.handleClient();
   return;
-}*/
+}
 
