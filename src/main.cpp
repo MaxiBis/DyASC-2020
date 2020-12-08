@@ -5,6 +5,7 @@
 #include <wifi_adapter.h>
 #include <CI_controller.h>
 #include "Test_Led.h"
+#include <Arduino_JSON.h>
 
 
 const int requestInterval = 7000;  // 7s
