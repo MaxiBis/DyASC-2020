@@ -3,7 +3,7 @@
 #include "Arduino.h"
 #include <string.h>
 #include "Encender_Led.h"
-
+#include <Parser_Json.h>
 
 int led_anterior;
 
@@ -21,11 +21,18 @@ String CI_controller::getHHTPRequest(const char* serverName) {
   
   String payload = "..."; 
   
+
+
   if (httpResponseCode > 0) {
     Serial.print("HTTP Response code: ");
     Serial.println(httpResponseCode);
     payload = http.getString();
-    Serial.println(payload);
+    Parser_Json pj;
+  
+    String respuesta = pj.parse(payload);
+    Serial.println(respuesta);
+    //showAnswer(respuesta);
+    //Serial.println(payload);
   }
   else {
     Serial.print("Error code: ");
