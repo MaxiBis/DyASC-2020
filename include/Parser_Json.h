@@ -8,9 +8,10 @@ class Parser_Json{
 
  private:
         String payload;
+        String parse(String st);        
  public:
-        Parser_Json();
-        String parse(String st);
-
+       Parser_Json();
+       String getState(String jsonEntrada);
+       int getResult(String jsonEntrada);
 };
 #endif /* Parser_Json */

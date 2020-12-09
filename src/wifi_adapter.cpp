@@ -8,8 +8,10 @@ const int output_pin = 2;
 wifi_adapter::wifi_adapter(){
     pinMode(output_pin, OUTPUT);
     wifi_status_pin = output_pin;
-    ssid = "WiFi-Arnet-nf4d";         //default credentials
-    password =  "UFYMAUAWKF";     //default credentials
+    //ssid = "WiFi-Arnet-nf4d";         //default credentials
+    //password =  "UFYMAUAWKF";     //default credentials
+    ssid = "Maxi-Tele";         //default credentials
+    password =  "vwgol123";     //default credentials
 }
 
 

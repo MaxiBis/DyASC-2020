@@ -4,12 +4,12 @@
 #include <string.h>
 #include "Encender_Led.h"
 #include <Parser_Json.h>
+#include "Arduino_JSON.h"
 
-int led_anterior;
+Encender_Led el;
 
 CI_controller::CI_controller(){
    // estado_anterior();
-   
 };
 
 String CI_controller::getHHTPRequest(const char* serverName) {
@@ -21,81 +21,61 @@ String CI_controller::getHHTPRequest(const char* serverName) {
   
   String payload = "..."; 
   
-
-
   if (httpResponseCode > 0) {
     Serial.print("HTTP Response code: ");
     Serial.println(httpResponseCode);
     payload = http.getString();
-    Parser_Json pj;
-  
-    String respuesta = pj.parse(payload);
-    Serial.println(respuesta);
-    //showAnswer(respuesta);
-    //Serial.println(payload);
   }
   else {
     Serial.print("Error code: ");
     Serial.println(httpResponseCode);
   }
-  // liberamos
-  http.end();
+
+  http.end();     // liberamos
 
   return payload;
 };
 
-
-
 void CI_controller::showAnswer(String answ){
+    Parser_Json parserj;    
+    String currentState = parserj.getState(answ);
+
+    if (currentState.equals("\"started\"") || currentState.equals("\"created\"")){
+      Serial.println("BUILD STARTING\n");
+      el.turnON(YellowLed);
+    }else if (currentState.equals("\"finished\"")){
+      switch (parserj.getResult(answ))  {
+          case 0:
+            Serial.println("BUILD PASSING\n");
+            el.turnON(GreenLed);
+            break;
+          case 1:
+            Serial.println("BUILD FAILING\n");
+            el.turnON(RedLed);    
+            break;
+          default:    
+            break;
+      }
+    } else{
+          //Mostrar algun error de que funciono mal? 
+    }
+};
+
+/*
     String answer = answ;
-    
+    Serial.println("ESTADO JSON\n\n\n");    
+    Serial.println(currentState);
+    Serial.println("\n");
+    Serial.println(currentResult);
+
     if (answer.indexOf("failing") > 0) {
-        Serial.println("FAILING\n");
-      procesar_salida(RedLed);
-       
-        
-      } else
-    if (answer.indexOf("canceled") > 0) {
-        Serial.println("CANCELED\n");
-      
-        procesar_salida(YellowLed);
-
-    } else
-    if (answer.indexOf("passing") > 0) {
-        Serial.println("PASSING\n");
-        procesar_salida(GreenLed);
+      Serial.println("FAILING\n");
+      el.turnON(RedLed);    
+    }else if (answer.indexOf("canceled") > 0) {
+      Serial.println("CANCELED\n");
+      el.turnON(YellowLed);
+    } else if (answer.indexOf("passing") > 0) {
+      Serial.println("PASSING\n");
+      el.turnON(GreenLed);
     } 
-    return;
-};
-
-
-
-int CI_controller::estado_anterior(){
-  if(digitalRead(22)==HIGH){
-
-    led_anterior = 22;
-    return 22;
-  }else if(digitalRead(04)==HIGH){
-    
-    led_anterior = 04;
-    return 04;
-  }else if(digitalRead(21)){
-    led_anterior = 21;
-    return 21;
-  }
-  
-   return led_anterior;
-};
-
-
-
-void CI_controller::procesar_salida(int led){
-   
- 
-  Encender_Led el;
-  if(led != estado_anterior()){
-    el.parpadea_led(led);
-  }
- el.led_correcto(led);
- 
-};
+*/    

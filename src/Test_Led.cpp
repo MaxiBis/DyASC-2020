@@ -16,7 +16,7 @@ Test_Led::Test_Led(){
 void Test_Led::test_Led_state_high(int Led) {
     //digitalWrite(Led, HIGH);
     Encender_Led le;
-    le.led_correcto(Led);
+    le.turnON(Led);
     //TEST_ASSERT_EQUAL(1,digitalRead(Led));
     if(digitalRead(Led == 1)){Serial.println("test_Led passed");
     delay(1000);

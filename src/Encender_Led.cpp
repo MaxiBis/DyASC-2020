@@ -9,8 +9,10 @@ const int GreenLed = 04;
 const int YellowLed = 22;
 const int RedLed = 21;
 
+//const int led_anterior = 22;
 
-Encender_Led::Encender_Led(){
+
+Encender_Led::Encender_Led(){       //consturctor
     pinMode(GreenLed, OUTPUT);
     pinMode(YellowLed, OUTPUT);
     pinMode(RedLed, OUTPUT);
@@ -22,17 +24,19 @@ Encender_Led::Encender_Led(){
     digitalWrite(GreenLed, LOW);
     digitalWrite(YellowLed, LOW);
     digitalWrite(RedLed, LOW);
-    //led_correcto(led);
+    
 };
 
-void Encender_Led::led_correcto(int led){
-   
+void Encender_Led::turnON(int ledAPrender){
+
     digitalWrite(GreenLed, LOW);
     digitalWrite(YellowLed, LOW);
     digitalWrite(RedLed, LOW);
 
-    digitalWrite(led, HIGH);
-    
+    if(ledAPrender != led_anterior){ parpadea_led(ledAPrender);}
+
+    digitalWrite(ledAPrender, HIGH);
+    led_anterior = ledAPrender;
 };
 
 
@@ -45,7 +49,9 @@ void Encender_Led::parpadea_led(int led){
 
         digitalWrite(led, LOW);
         delay(300);
-
     }
-    
 };
+
+int Encender_Led::get_led_anterior(){
+    return led_anterior;
+}
