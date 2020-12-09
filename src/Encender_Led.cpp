@@ -14,7 +14,14 @@ Encender_Led::Encender_Led(){
     pinMode(GreenLed, OUTPUT);
     pinMode(YellowLed, OUTPUT);
     pinMode(RedLed, OUTPUT);
-
+      
+    digitalWrite(GreenLed, HIGH);
+    digitalWrite(YellowLed, HIGH);
+    digitalWrite(RedLed, HIGH);
+    delay(1500);
+    digitalWrite(GreenLed, LOW);
+    digitalWrite(YellowLed, LOW);
+    digitalWrite(RedLed, LOW);
     //led_correcto(led);
 };
 
