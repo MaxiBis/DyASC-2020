@@ -2,7 +2,7 @@
 #define wifi_adapter_mock_h
 
 #include "wifi_adapter_interface.h"
-#include <string> 
+#include <string.h> 
 
 class wifi_adapter_mock : public wifi_adapter_interface
 {

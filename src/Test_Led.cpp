@@ -7,13 +7,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Test_Led.h"
+#include <Encender_Led.h>
 
 Test_Led::Test_Led(){
     
 }
 
 void Test_Led::test_Led_state_high(int Led) {
-    digitalWrite(Led, HIGH);
+    //digitalWrite(Led, HIGH);
+    Encender_Led le;
+    le.led_correcto(Led);
     //TEST_ASSERT_EQUAL(1,digitalRead(Led));
     if(digitalRead(Led == 1)){Serial.println("test_Led passed");
     delay(1000);

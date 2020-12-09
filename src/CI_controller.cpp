@@ -25,6 +25,7 @@ String CI_controller::getHHTPRequest(const char* serverName) {
     Serial.print("HTTP Response code: ");
     Serial.println(httpResponseCode);
     payload = http.getString();
+    Serial.println(payload);
   }
   else {
     Serial.print("Error code: ");

@@ -1,4 +1,4 @@
-#include <Web.h>
+//#include <Web.h>
 #include <WebServer.h>
 #include <string.h>
 
@@ -81,7 +81,7 @@ void handlePostForm()
   Serial.println(passwordNueva);
 }
 
-web::web(){
+/*web::web(){
   server.on("/",handle_OnConnect);
   server.on("/postForm", handlePostForm);
   server.onNotFound(handle_NotFound);
@@ -94,4 +94,4 @@ void web::atenderCliente() {
   server.handleClient();
   return;
 }
-
+*/
