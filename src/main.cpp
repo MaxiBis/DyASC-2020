@@ -8,8 +8,6 @@
 
 
 const int requestInterval = 7000;  // 7s
-
-String httpAnswer;
 //web myweb;
 
 // Url's para hacer las peticiones
