@@ -30,7 +30,7 @@ String CI_controller_Travis::getHHTPRequest(const char* serverName) {
     Serial.print("Error code: ");
     Serial.println(httpResponseCode);
   }
-
+  Serial.println(payload);
   http.end();     // liberamos
 
   return payload;
