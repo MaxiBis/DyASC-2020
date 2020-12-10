@@ -4,7 +4,7 @@ TP baliza de integracion continua
 
 Materia:DyASC
 
-Profesores: Diego Fontdevila
+Profesores: Diego Fontdevila /n
             Jorge Fossati
             Lucas Campaner
             
