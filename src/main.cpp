@@ -2,7 +2,7 @@
 #ifdef ARDUINO
 #include <string.h>
 #include <wifi_adapter.h>
-#include <CI_controller.h>
+#include <CI_controller_Travis.h>
 #include "Test_Led.h"
 #include <Encender_Led.h>
 
@@ -35,13 +35,14 @@ void setup(){
 
 
 void loop(){
-  CI_controller mycontroller;
+  CI_controller_Travis mycontroller;
 
   while(1){
     if(miwifi.isConnected()){ 
 
-      httpAnswer = mycontroller.getHHTPRequest(URL);
-      mycontroller.showAnswer(httpAnswer);
+      //httpAnswer = mycontroller.getHHTPRequest(URL);
+      //mycontroller.showAnswer(httpAnswer);
+      mycontroller.process(URL);
 
       delay(requestInterval);   //delay entre requests
       //myweb.atenderCliente();

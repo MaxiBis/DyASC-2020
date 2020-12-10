@@ -10,7 +10,6 @@ Parser_Json::Parser_Json()
 
 };
 
-
 String Parser_Json::parse(String st){
     JSONVar build = JSON.parse(st);
     String estadoBuild = JSON.stringify(build[0]["state"]);

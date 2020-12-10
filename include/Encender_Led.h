@@ -3,8 +3,7 @@
 
 #include "Arduino.h"
 #include <string.h>
-#include <esp32-hal-bt.h>
-//#include "Encender_Led.h"
+//#include <esp32-hal-bt.h>
 
 class Encender_Led
 {     

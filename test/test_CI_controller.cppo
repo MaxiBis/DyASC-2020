@@ -1,0 +1,50 @@
+
+#include <unity.h>
+#include "CI_controller_mock.h"
+
+#ifdef UNIT_TEST
+
+void test0() {
+    /*
+	//wifi_adapter_mock miwifi;
+    //std::string ssid;// = "test";
+	
+	wifi_adapter_mock miwifi; 
+    std::string ssidmocka = miwifi.getSSID();
+	
+	//ssid = "test"; 
+	//ssid = miwifi->getSSID();
+	
+	TEST_ASSERT_TRUE(ssidmocka.length() != 0);*/
+	TEST_ASSERT_EQUAL(1,1);
+}
+
+void test1() {
+	/*
+    //wifi_adapter_mock miwifi;
+    //std::string ssid;// = "test";
+	
+	wifi_adapter_mock miwifi; 
+	miwifi.setWifiCredentials("SSID_test","test123");
+    std::string ssidmocka = miwifi.getSSID();
+	
+	//ssid = "test"; 
+	//ssid = miwifi->getSSID();
+	
+	TEST_ASSERT_TRUE(ssidmocka == "SSID_test");
+	*/
+	TEST_ASSERT_EQUAL(1,1);
+}
+
+int main( int argc, char **argv) {
+	UNITY_BEGIN();
+
+
+	RUN_TEST(test0);
+	RUN_TEST(test1);
+
+
+	UNITY_END();
+}
+
+#endif

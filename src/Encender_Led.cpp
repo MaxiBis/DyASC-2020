@@ -33,17 +33,16 @@ void Encender_Led::turnON(int ledAPrender){
     digitalWrite(YellowLed, LOW);
     digitalWrite(RedLed, LOW);
 
-    if(ledAPrender != led_anterior){ parpadea_led(ledAPrender);}
+    if((ledAPrender != led_anterior) && (ledAPrender != YellowLed)){ parpadea_led(ledAPrender);}     //Hago parpadear cuando pasa de rojo a verde y viceversa(en el medio amarillo no)
 
     digitalWrite(ledAPrender, HIGH);
-    led_anterior = ledAPrender;
+    if ((ledAPrender != YellowLed)){led_anterior = ledAPrender;}                                     //Solo guardo el estado del rojo y verde
 };
 
 
 void Encender_Led::parpadea_led(int led){
     int i;
-    for(i = 0; i < 15; i++){
-        
+    for(i = 0; i < 15; i++){        
         digitalWrite(led,HIGH);
         delay(300);
 
